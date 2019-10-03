@@ -1,0 +1,16 @@
+{
+  "name": "DataTrust",
+  "version": "1.0",
+  "omnibox": {"keyword": "*"},
+  "manifest_version": 2,
+  "options_page": "options/options.html",
+  "browser_action": {
+    "default_icon": "thumbsdown-19.png",
+    "default_popup": "popup.html",
+    "default_title": "Security Popup"
+  },
+  "background": {
+    "scripts": ["background.js"]
+},
+"permissions": ["tabs"]
+}

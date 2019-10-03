@@ -1,0 +1,131 @@
+html {
+  background-color: rgba(2, 88, 194, 0.1);
+}
+body {
+  width: 275px;
+  font-family: 'Lato', Arial, sans-serif;
+  background-color: #fff;
+  border: 2px solid rgb(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 1px 1px rgb(52, 119, 235, 0.5);
+}
+header {
+  font-size: 20px;
+  padding-top: 10px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.5);
+  cursor: pointer;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  display:flex;
+  align-items: center;
+}
+header span {
+  font-weight: normal;
+}
+#flag {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  cursor:pointer;
+}
+#flag:hover {
+  color: red;
+}
+#go_to_options{
+  width: 16px;
+  fill: rgba(102, 102, 102, 0.5);
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  cursor:pointer;
+}
+
+#go_to_options:hover{
+  width: 16px;
+  fill: rgb(52,107,168);
+}
+img {
+  width: 48px;
+}
+p {
+  padding-left: 10px;
+  padding: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.bar {
+  display: block;
+  border-radius: 10px;
+  color: blue;
+  border:none;
+  height: 12px;
+  margin-top: 5px;
+}
+#company_name{
+  background-color: rgba(102, 102, 102, 0.1);
+  border-bottom: 1px solid rgba(102, 102, 102, 0.5);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+#company_name p {
+  margin: -8px;
+}
+#cookies {
+  font-size:13px;
+  cursor: pointer;
+}
+#cookies span {
+  font-size: 16px;
+}
+#cookies:hover {
+  background-color: rgba(102, 102, 102, 0.2);
+  -webkit-transition: background-color 150ms linear;
+  -ms-transition: background-color 150ms linear;
+  transition: background-color 150ms linear;
+}
+#volume{
+  cursor: pointer;
+}
+#volume:hover {
+  background-color: rgba(102, 102, 102, 0.2);
+  -webkit-transition: background-color 150ms linear;
+  -ms-transition: background-color 150ms linear;
+  transition: background-color 150ms linear;
+}
+#third_party_usage{
+  cursor: pointer;
+}
+#third_party_usage:hover {
+  background-color: rgba(102, 102, 102, 0.2);
+  -webkit-transition: background-color 150ms linear;
+  -ms-transition: background-color 150ms linear;
+  transition: background-color 150ms linear;
+}
+#domain{
+  font-style: italic;
+  font-size: 12px;
+  font-weight: normal;
+}
+img#shield {
+  width: 36px;
+}
+
+#img_container {
+  padding: 14px;
+  text-align:center;
+}
+footer {
+  text-align:center;
+  padding: 6px;
+  cursor:pointer;
+}
+a {
+  color: rgb(52,107,168);
+  text-decoration: none;
+}
+
+footer a:hover{
+  font-weight: bold;
+  color:red;
+}
