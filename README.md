@@ -8,4 +8,4 @@
 - https://github.com/SwanHub/datatrust_react
 
 ## Languages 
-- ```Javascript```
+- ```Vanilla JS```
