@@ -60,6 +60,7 @@ p {
   border:none;
   height: 12px;
   margin-top: 5px;
+  max-width: 254px;
 }
 #company_name{
   background-color: rgba(102, 102, 102, 0.1);
@@ -72,11 +73,7 @@ p {
   margin: -8px;
 }
 #cookies {
-  font-size:13px;
   cursor: pointer;
-}
-#cookies span {
-  font-size: 16px;
 }
 #cookies:hover {
   background-color: rgba(102, 102, 102, 0.2);
@@ -124,8 +121,14 @@ a {
   color: rgb(52,107,168);
   text-decoration: none;
 }
-
 footer a:hover{
   font-weight: bold;
   color:red;
+}
+#no-data {
+  text-align:center;
+  font-weight: bold;
+}
+#content span {
+  font-weight: bold;
 }

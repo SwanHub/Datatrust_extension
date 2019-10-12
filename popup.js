@@ -6,6 +6,7 @@ function getUrlData() {
     chrome.runtime.sendMessage({text: "GetInfo"}, displayRegistrationData);
   }
 
+// go to options page
 document.querySelector('#go_to_options').addEventListener('click', function() {
     if (chrome.runtime.openOptionsPage) {
       chrome.runtime.openOptionsPage();
@@ -15,24 +16,31 @@ document.querySelector('#go_to_options').addEventListener('click', function() {
   });
 
 // Eventually, the "volume" and "third-party-usage" could be "in relation" to other websites...
-function displayRegistrationData(json){
-    if (json.company_name == "Not Registered"){
-        displayCompany(json)
+function displayRegistrationData(site){
+    console.log(site)
+    if (site.company_name == "Not Registered"){
+        displayCompany(site)
         displayUnTrustworthy()
         displayRegisterSite()
     } else {
-        displayCompany(json)
-        displayThirdParty(json)
-        displayVolume(json)
-        displayCookies(json)
-        displayMoreInformation()
+        if (site.website.collect_user_data) {
+            displayCompany(site.website)
+            displayVolume(site.data_types.length)
+            displayThirdParty(site.noticePolicy)
+            displayCookies(site.website)
+            displayMoreInformation()
+        } else {
+            displayCompany(site.website)
+            displayNoUserData()
+            displayThumbsUp()
+        }
     }
 }
 
-function displayCompany(json){
+function displayCompany(site){
     const p = document.createElement('p')
     p.id = 'company_name'
-    p.innerHTML = `${json.company_name} <p id="domain">${json.domain.replace(/46/g, ".")}</p>`
+    p.innerHTML = `${site.company_name} <p id="domain">${site.domain}</p>`
     div.appendChild(p)
 }
 
@@ -46,59 +54,79 @@ function displayUnTrustworthy(){
     div.appendChild(imgContainer)
 }
 
-function displayThirdParty(json){
+function displayThirdParty(site){
     const p = document.createElement('p')
     p.id = 'third_party_usage'
-    p.innerText = "Third Party Usage"
-    displayThirdPartyBar(p, json)
+    if (site.third_parties){
+        p.innerHTML = "Sell to third parties: <span>Yes</span>"
+    } else {
+        p.innerHTML = "Sell to third parties: <span>No</span>"
+    }
     div.appendChild(p)
 }
 
-function displayThirdPartyBar(p, json){
-    const thirdPartyBar = document.createElement('div')
-    thirdPartyBar.className = "bar"
-    json.third_party_usage < 5
-        ? thirdPartyBar.style = "background-color:green"
-        : thirdPartyBar.style = "background-color:red"
-    thirdPartyBar.style.width = `${parseInt(json.third_party_usage * 20)}px`
-    p.appendChild(thirdPartyBar)
-}
+// function displayThirdPartyBar(p, site){
+//     const thirdPartyBar = document.createElement('div')
+//     thirdPartyBar.className = "bar"
+//     site.third_party_usage < 5
+//         ? thirdPartyBar.style = "background-color:green"
+//         : thirdPartyBar.style = "background-color:red"
+//     thirdPartyBar.style.width = `${parseInt(site.third_party_usage * 20)}px`
+//     p.appendChild(thirdPartyBar)
+// }
 
-function displayVolume(json){
+function displayVolume(typeCount){
     const p = document.createElement('p')
     p.id = 'volume'
     p.innerText = "Amount of Data Tracked"
-    displayVolumeBar(p, json)
+    console.log(typeCount)
+    displayVolumeBar(p, typeCount)
     div.appendChild(p)
 }
 
-function displayVolumeBar(p, json){
+function displayVolumeBar(p, typeCount){
     const volumeBar = document.createElement('div')
     volumeBar.className = "bar"
-    json.volume < 5
-        ? volumeBar.style = "background-color:green"
-        : volumeBar.style = "background-color:red"
-    volumeBar.style.width = `${parseInt(json.volume * 20)}px`
+    typeCount > 18
+        ? volumeBar.style = "background-color:red"
+        : volumeBar.style = "background-color:green"
+    volumeBar.style.width = `${typeCount * 20}px`
     p.appendChild(volumeBar)
 }
 
-function displayCookies(json){
+function displayCookies(site){
     const p = document.createElement('p')
     p.id = "cookies"
-    if (!!json.cookies){
-        p.innerHTML = "Cookies: Yes"
+    if (!!site.cookies){
+        p.innerHTML = "Cookies: <span>Yes</span>"
     } else {
-        p.innerHTML = "Cookies: No"
+        p.innerHTML = "Cookies: <span>No</span>"
     }
-    console.log(p)
     div.appendChild(p)
+}
+
+function displayNoUserData(){
+    const p = document.createElement('p')
+    p.id = "no-data"
+    p.innerHTML = "We don't collect user data"
+    div.appendChild(p)
+}
+
+function displayThumbsUp(){
+    let img = document.createElement('img')
+    img.id = "thumbs-up"
+    img.src = "thumbsup-48.png"
+    let imgContainer = document.createElement('div')
+    imgContainer.id = "img_container"
+    imgContainer.appendChild(img)
+    div.appendChild(imgContainer)
 }
 
 function displayRegisterSite(){
     let footer = document.createElement('footer')
     let a = document.createElement('a')
     a.target = "_blank"
-    a.href = "https://datatrust-fcec5.firebaseapp.com/"
+    a.href = "https://datatrust-a2ff3.firebaseapp.com"
     a.innerText = "Register Site"
     footer.appendChild(a)
     div.appendChild(footer)
@@ -108,12 +136,8 @@ function displayMoreInformation(){
     let footer = document.createElement('footer')
     let a = document.createElement('a')
     a.target = "_blank"
-    a.href = "https://datatrust-fcec5.firebaseapp.com/"
+    a.href = "https://datatrust-a2ff3.firebaseapp.com"
     a.innerText = "More Information"
     footer.appendChild(a)
     div.appendChild(footer)
 }
-
-// const $ = {
-//    domain: function(){}
-// }
