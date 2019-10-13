@@ -4,7 +4,7 @@ const div = document.querySelector('#content')
 
 function getUrlData() {
     chrome.runtime.sendMessage({text: "GetInfo"}, displayRegistrationData);
-  }
+}
 
 // go to options page
 document.querySelector('#go_to_options').addEventListener('click', function() {
@@ -15,9 +15,8 @@ document.querySelector('#go_to_options').addEventListener('click', function() {
     }
   });
 
-// Eventually, the "volume" and "third-party-usage" could be "in relation" to other websites...
+// Display data websites...
 function displayRegistrationData(site){
-    console.log(site)
     if (site.company_name == "Not Registered"){
         displayCompany(site)
         displayUnTrustworthy()
@@ -65,6 +64,8 @@ function displayThirdParty(site){
     div.appendChild(p)
 }
 
+// keeping this in case the volume bar returns... 
+
 // function displayThirdPartyBar(p, site){
 //     const thirdPartyBar = document.createElement('div')
 //     thirdPartyBar.className = "bar"
@@ -79,7 +80,6 @@ function displayVolume(typeCount){
     const p = document.createElement('p')
     p.id = 'volume'
     p.innerText = "Amount of Data Tracked"
-    console.log(typeCount)
     displayVolumeBar(p, typeCount)
     div.appendChild(p)
 }

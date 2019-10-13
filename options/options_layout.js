@@ -6,6 +6,7 @@ const settingsLi = document.querySelector('#settings')
 settingsLi.style = "font-weight:bold;background-color:#fff;"
 localStorage.setItem('currentTab', '#settings')
 
+// needs refactoring => considering using react for the refactor
 const themesLi = document.querySelector('#themes')
 const aboutLi = document.querySelector('#about')
 const supportLi = document.querySelector('#support')

@@ -3,7 +3,7 @@ html {
 }
 body {
   width: 275px;
-  font-family: 'Lato', Arial, sans-serif;
+  font-family: 'Georgia', serif;
   background-color: #fff;
   border: 2px solid rgb(0, 0, 0, 0.8);
   box-shadow: 0px 0px 1px 1px rgb(52, 119, 235, 0.5);
@@ -104,8 +104,9 @@ p {
   font-size: 12px;
   font-weight: normal;
 }
-img#shield {
-  width: 36px;
+img#icon {
+  width: 24px;
+  margin-right: 6px;
 }
 
 #img_container {
